@@ -1,6 +1,6 @@
 package com.example.lowkeyimagefeed.domain
 
-data class Photos(
+data class PhotosResponse(
     val page: Int = 0,
     val perPage: Int = 0,
     val photos: List<Photo> = emptyList(),
