@@ -9,7 +9,11 @@ import com.example.lowkeyimagefeed.domain.Photo
 
 class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder>() {
 
-    private val photos: List<Photo> = emptyList()
+    private var photos: List<Photo> = emptyList()
+
+    fun setPhotos(photos: List<Photo>) {
+        this.photos = photos
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         val itemBinding =
