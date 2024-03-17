@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.lowkeyimagefeed.databinding.FragmentHomeBinding
-import com.example.lowkeyimagefeed.domain.RequestPhotos
 import com.example.lowkeyimagefeed.ui.adapter.PhotosAdapter
 import com.example.lowkeyimagefeed.ui.home.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +27,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchData() {
-        viewModel.getPhotos(RequestPhotos())
+        viewModel.getPhotos()
     }
 
     override fun onCreateView(

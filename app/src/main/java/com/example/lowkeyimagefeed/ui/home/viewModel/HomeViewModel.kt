@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lowkeyimagefeed.domain.PhotosResponse
-import com.example.lowkeyimagefeed.domain.RequestPhotos
 import com.example.lowkeyimagefeed.usecase.GetPhotosInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,9 +18,9 @@ class HomeViewModel @Inject constructor(
     private val _photos: MutableLiveData<PhotosResponse> = MutableLiveData()
     val photos: LiveData<PhotosResponse> = _photos
 
-    fun getPhotos(requestPhotos: RequestPhotos) {
+    fun getPhotos() {
         viewModelScope.launch {
-            getPhotosInteractor.execute(requestPhotos).collect {
+            getPhotosInteractor.execute().collect {
                 _photos.value = it
             }
         }
