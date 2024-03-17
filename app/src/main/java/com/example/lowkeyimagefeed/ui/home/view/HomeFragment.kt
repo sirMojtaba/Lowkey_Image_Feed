@@ -10,7 +10,9 @@ import com.example.lowkeyimagefeed.databinding.FragmentHomeBinding
 import com.example.lowkeyimagefeed.domain.RequestPhotos
 import com.example.lowkeyimagefeed.ui.adapter.PhotosAdapter
 import com.example.lowkeyimagefeed.ui.home.viewModel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
