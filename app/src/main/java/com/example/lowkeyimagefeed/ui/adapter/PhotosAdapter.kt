@@ -10,10 +10,15 @@ import com.example.lowkeyimagefeed.domain.Photo
 class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder>() {
 
     private var photos: List<Photo> = emptyList()
+    private lateinit var onImageClickListener: OnImageClickListener
 
     fun setPhotos(photos: List<Photo>) {
         this.photos = photos
         notifyDataSetChanged()
+    }
+
+    fun setOnImageClickListener(onImageClickListener: OnImageClickListener) {
+        this.onImageClickListener = onImageClickListener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
@@ -29,6 +34,9 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder>() {
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val photo = photos[position]
         holder.bind(photo)
+        holder.itemView.setOnClickListener {
+            onImageClickListener.onImageClick(photo.id)
+        }
     }
 
     class PhotoViewHolder(private val binding: ItemImageBinding) :
@@ -37,5 +45,9 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder>() {
             binding.authorsName.text = photo.photographer
             Glide.with(binding.root).load(photo.src.medium).into(binding.iv)
         }
+    }
+
+    interface OnImageClickListener {
+        fun onImageClick(imageId: Int)
     }
 }
