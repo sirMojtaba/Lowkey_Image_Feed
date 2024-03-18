@@ -3,7 +3,8 @@ package com.example.lowkeyimagefeed.ui.di
 import com.example.lowkeyimagefeed.data.remote.api.ApiService
 import com.example.lowkeyimagefeed.data.repository.PhotosRepository
 import com.example.lowkeyimagefeed.data.repository.PhotosRepositoryImpl
-import com.example.lowkeyimagefeed.data.repository.PhotosService
+import com.example.lowkeyimagefeed.data.source.local.AppDatabase
+import com.example.lowkeyimagefeed.data.source.remote.PhotosService
 import com.example.lowkeyimagefeed.framework.service.PhotosServiceImpl
 import com.example.lowkeyimagefeed.usecase.GetPhotosInteractor
 import dagger.Module
@@ -18,8 +19,8 @@ object PhotosViewModelModule {
 
     @Provides
     @ViewModelScoped
-    fun providePhotosService(apiService: ApiService): PhotosService {
-        return PhotosServiceImpl(apiService)
+    fun providePhotosService(apiService: ApiService, appDatabase: AppDatabase): PhotosService {
+        return PhotosServiceImpl(apiService, appDatabase)
     }
 
     @Provides

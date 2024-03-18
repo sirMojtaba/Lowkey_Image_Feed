@@ -85,8 +85,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun registerObservers() {
-        viewModel.photos.observe(viewLifecycleOwner) {
-            photos += it.photos
+        viewModel.photos.observe(viewLifecycleOwner) { photoList ->
+            photos += photoList
             photos = photos.distinct()
             adapter.setPhotos(photos)
             page += 1
