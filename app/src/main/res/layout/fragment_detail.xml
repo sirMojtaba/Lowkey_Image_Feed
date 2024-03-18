@@ -5,25 +5,44 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.detail.view.DetailFragment">
-
     <ImageView
-        android:id="@+id/iv"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="24dp"
+        android:id="@+id/iv_blur"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
+        tools:src="@drawable/img_me" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/img_me" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_percent=".95">
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/img_me" />
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/tv_authors_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/iv"
-        app:layout_constraintTop_toBottomOf="@id/iv"
+        android:drawableStart="@drawable/ic_camera"
+        android:drawablePadding="4dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/card_view"
         tools:text="Mojtaba HassanZadeh" />
 
     <TextView
@@ -31,9 +50,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/ic_cc"
+        android:drawablePadding="4dp"
+        android:gravity="center"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@id/tv_authors_name"
         app:layout_constraintTop_toBottomOf="@id/tv_authors_name"
         tools:text="Descripton of photo" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
