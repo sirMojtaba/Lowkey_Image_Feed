@@ -1,14 +1,14 @@
 package com.example.lowkeyimagefeed.ui.detail.view
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.lowkeyimagefeed.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.example.lowkeyimagefeed.databinding.FragmentDetailBinding
-import com.example.lowkeyimagefeed.databinding.FragmentHomeBinding
+import com.example.lowkeyimagefeed.domain.Photo
 import com.example.lowkeyimagefeed.ui.detail.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,11 +18,11 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DetailViewModel by viewModels()
+    private lateinit var photo: Photo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
+        photo = arguments?.getSerializable("photo") as Photo
     }
 
     override fun onCreateView(
@@ -31,6 +31,11 @@ class DetailFragment : Fragment() {
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Glide.with(view).load(photo.src.large).into(binding.iv)
     }
 
     override fun onDestroyView() {

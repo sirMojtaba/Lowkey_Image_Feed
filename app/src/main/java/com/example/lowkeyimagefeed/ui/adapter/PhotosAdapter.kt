@@ -35,7 +35,7 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder>() {
         val photo = photos[position]
         holder.bind(photo)
         holder.itemView.setOnClickListener {
-            onImageClickListener.onImageClick(photo.id)
+            onImageClickListener.onImageClick(photo)
         }
     }
 
@@ -48,6 +48,6 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder>() {
     }
 
     interface OnImageClickListener {
-        fun onImageClick(imageId: Int)
+        fun onImageClick(phot: Photo)
     }
 }

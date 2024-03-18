@@ -1,5 +1,6 @@
 package com.example.lowkeyimagefeed.domain
 
 data class Src(
-    val medium: String = ""
+    val medium: String = "",
+    val large: String = ""
 )

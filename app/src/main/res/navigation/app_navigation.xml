@@ -18,5 +18,9 @@
         android:id="@+id/detailFragment"
         android:name="com.example.lowkeyimagefeed.ui.detail.view.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="photo"
+            app:argType="com.example.lowkeyimagefeed.domain.Photo" />
+    </fragment>
 </navigation>

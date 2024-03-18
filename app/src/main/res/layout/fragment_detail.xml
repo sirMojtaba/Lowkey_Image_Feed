@@ -6,6 +6,7 @@
     tools:context=".ui.detail.view.DetailFragment">
 
     <ImageView
+        android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />

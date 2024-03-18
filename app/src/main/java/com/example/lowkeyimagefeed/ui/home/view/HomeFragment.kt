@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.lowkeyimagefeed.R
 import com.example.lowkeyimagefeed.databinding.FragmentHomeBinding
+import com.example.lowkeyimagefeed.domain.Photo
 import com.example.lowkeyimagefeed.ui.adapter.PhotosAdapter
 import com.example.lowkeyimagefeed.ui.home.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,8 +48,11 @@ class HomeFragment : Fragment() {
         registerObservers()
         binding.recyclerview.adapter = adapter
         adapter.setOnImageClickListener(object : PhotosAdapter.OnImageClickListener {
-            override fun onImageClick(imageId: Int) {
-                findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
+            override fun onImageClick(photo: Photo) {
+                findNavController().navigate(
+                    R.id.action_homeFragment_to_detailFragment,
+                    bundleOf("photo" to photo)
+                )
             }
         })
     }
