@@ -10,12 +10,12 @@ import javax.inject.Inject
 
 class PhotosServiceImpl @Inject constructor(private val apiService: ApiService) : PhotosService {
 
-    override fun getPhotos(): Flow<PhotosResponse> {
+    override fun getPhotos(page: Int): Flow<PhotosResponse> {
         return flow {
             emit(
                 apiService.getPhotos(
                     NetworkConsts.API_KEY,
-                    mapOf("page" to 1, "per_page" to 15)
+                    mapOf("page" to page, "per_page" to 10)
                 )
             )
         }

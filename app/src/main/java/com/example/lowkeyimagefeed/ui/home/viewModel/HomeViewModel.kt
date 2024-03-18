@@ -18,9 +18,9 @@ class HomeViewModel @Inject constructor(
     private val _photos: MutableLiveData<PhotosResponse> = MutableLiveData()
     val photos: LiveData<PhotosResponse> = _photos
 
-    fun getPhotos() {
+    fun getPhotos(page: Int) {
         viewModelScope.launch {
-            getPhotosInteractor.execute().collect {
+            getPhotosInteractor.execute(page).collect {
                 _photos.value = it
             }
         }

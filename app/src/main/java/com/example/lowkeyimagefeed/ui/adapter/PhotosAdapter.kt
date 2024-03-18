@@ -43,7 +43,7 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(photo: Photo) {
             binding.tvAuthorsName.text = photo.photographer
-            Glide.with(binding.root).load(photo.src.medium).into(binding.iv)
+            Glide.with(binding.root).load(photo.src.large).into(binding.iv)
         }
     }
 

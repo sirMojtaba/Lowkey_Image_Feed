@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 class PhotosRepositoryImpl(private val photosService: PhotosService) : PhotosRepository {
 
-    override fun getPhotos(): Flow<PhotosResponse> {
-        return photosService.getPhotos()
+    override fun getPhotos(page: Int): Flow<PhotosResponse> {
+        return photosService.getPhotos(page)
     }
 }

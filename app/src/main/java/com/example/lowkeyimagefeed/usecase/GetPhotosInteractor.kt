@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 class GetPhotosInteractor(private val repository: PhotosRepository) {
 
-    fun execute(): Flow<PhotosResponse> {
-        return repository.getPhotos()
+    fun execute(page: Int): Flow<PhotosResponse> {
+        return repository.getPhotos(page)
     }
 }

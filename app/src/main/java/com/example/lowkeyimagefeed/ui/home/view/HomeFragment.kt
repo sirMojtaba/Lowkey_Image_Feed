@@ -8,6 +8,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.example.lowkeyimagefeed.R
 import com.example.lowkeyimagefeed.databinding.FragmentHomeBinding
 import com.example.lowkeyimagefeed.domain.Photo
@@ -22,6 +24,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var adapter: PhotosAdapter
+    private var page: Int = 1
+    private var photos: List<Photo> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +35,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchData() {
-        viewModel.getPhotos()
+        viewModel.getPhotos(page)
     }
 
     override fun onCreateView(
@@ -55,12 +59,23 @@ class HomeFragment : Fragment() {
                 )
             }
         })
+
+        binding.recyclerview.addOnScrollListener(object : OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!recyclerView.canScrollVertically(1)) {
+                    fetchData()
+                }
+            }
+        })
     }
 
     private fun registerObservers() {
         viewModel.photos.observe(viewLifecycleOwner) {
-            val photos = it.photos
+            photos += it.photos
+            photos = photos.distinct()
             adapter.setPhotos(photos)
+            page += 1
         }
     }
 

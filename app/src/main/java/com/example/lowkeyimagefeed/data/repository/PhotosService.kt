@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PhotosService {
 
-    fun getPhotos(): Flow<PhotosResponse>
+    fun getPhotos(page: Int): Flow<PhotosResponse>
 }

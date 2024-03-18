@@ -36,7 +36,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Glide.with(view).load(photo.src.large).override(30, 30).into(binding.ivBlur)
-        Glide.with(view).load(photo.src.large).into(binding.iv)
+        Glide.with(view).load(photo.src.large2x).into(binding.iv)
         if (photo.photographer.isNotBlank()) {
             binding.tvAuthorsName.text = photo.photographer
         } else {
