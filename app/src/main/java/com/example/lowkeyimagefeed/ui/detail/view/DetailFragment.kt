@@ -36,6 +36,8 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Glide.with(view).load(photo.src.large).into(binding.iv)
+        binding.tvAuthorsName.text = photo.photographer
+        binding.tvDescriptoin.text = photo.alt
     }
 
     override fun onDestroyView() {

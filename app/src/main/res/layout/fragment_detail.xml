@@ -3,12 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.detail.view.DetailFragment">
 
     <ImageView
         android:id="@+id/iv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/img_me" />
+
+    <TextView
+        android:id="@+id/tv_authors_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/iv"
+        app:layout_constraintTop_toBottomOf="@id/iv"
+        tools:text="Mojtaba HassanZadeh" />
+
+    <TextView
+        android:id="@+id/tv_descriptoin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/tv_authors_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_authors_name"
+        tools:text="Descripton of photo" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

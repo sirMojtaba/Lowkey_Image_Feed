@@ -5,5 +5,6 @@ import java.io.Serializable
 data class Photo(
     val id: Int = 0,
     val photographer: String = "",
+    val alt: String = "",
     val src: Src = Src()
 ) : Serializable
