@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.lowkeyimagefeed.databinding.ItemImageBinding
 import com.example.lowkeyimagefeed.domain.Photo
 
@@ -43,7 +44,7 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(photo: Photo) {
             binding.tvAuthorsName.text = photo.photographer
-            Glide.with(binding.root).load(photo.src.large).into(binding.iv)
+            Glide.with(binding.root).load(photo.src.large).diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.iv)
         }
     }
 

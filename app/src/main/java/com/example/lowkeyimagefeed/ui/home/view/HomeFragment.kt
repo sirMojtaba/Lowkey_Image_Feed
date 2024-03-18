@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
@@ -16,6 +17,8 @@ import com.example.lowkeyimagefeed.domain.Photo
 import com.example.lowkeyimagefeed.ui.adapter.PhotosAdapter
 import com.example.lowkeyimagefeed.ui.home.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -68,6 +71,17 @@ class HomeFragment : Fragment() {
                 }
             }
         })
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getPhotos(1)
+            photos = emptyList()
+            lifecycleScope.launch {
+                if (binding.swipeRefreshLayout.isRefreshing) {
+                    binding.swipeRefreshLayout.isRefreshing = false
+                }
+                delay(1000)
+            }
+        }
     }
 
     private fun registerObservers() {
