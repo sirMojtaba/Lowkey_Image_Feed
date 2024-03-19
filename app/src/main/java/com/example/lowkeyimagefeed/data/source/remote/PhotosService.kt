@@ -8,4 +8,5 @@ interface PhotosService {
     fun fetchPhotos(page: Int): Flow<List<Photo>?>
     fun addPhoto(photo: Photo)
     fun readPhotos(): Flow<List<Photo>>
+    fun cleanDatabase()
 }

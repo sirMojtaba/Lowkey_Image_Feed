@@ -23,4 +23,7 @@ interface PhotoDao {
     @Query("select * from photo_table")
     fun readAllPhotos(): List<PhotoEntity>
 
+    @Query("DELETE FROM photo_table")
+    fun deleteAll()
+
 }

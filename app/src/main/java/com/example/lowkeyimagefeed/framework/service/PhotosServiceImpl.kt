@@ -43,4 +43,8 @@ class PhotosServiceImpl @Inject constructor(
             emit(photos)
         }
     }
+
+    override fun cleanDatabase() {
+        appDatabase.photoDao.deleteAll()
+    }
 }

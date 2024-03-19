@@ -11,6 +11,7 @@ class PhotosRepositoryImpl(private val photosService: PhotosService) : PhotosRep
         return flow {
             photosService.fetchPhotos(page).collect { remotePhotos ->
                 if (!remotePhotos.isNullOrEmpty()) {
+                    photosService.cleanDatabase()
                     remotePhotos.forEach { photo ->
                         photosService.addPhoto(photo)
                     }
