@@ -4,6 +4,7 @@ import com.example.lowkeyimagefeed.data.mapper.toEntity
 import com.example.lowkeyimagefeed.data.mapper.toPhoto
 import com.example.lowkeyimagefeed.data.remote.api.ApiService
 import com.example.lowkeyimagefeed.data.source.local.AppDatabase
+import com.example.lowkeyimagefeed.data.source.local.entity.PhotoEntity
 import com.example.lowkeyimagefeed.data.source.remote.PhotosService
 import com.example.lowkeyimagefeed.domain.Photo
 import com.example.lowkeyimagefeed.framework.utils.NetworkConsts
@@ -30,8 +31,12 @@ class PhotosServiceImpl @Inject constructor(
         }
     }
 
-    override fun addPhoto(photo: Photo) {
-        appDatabase.photoDao.insertPhoto(photo.toEntity())
+    override fun insertPhotos(photos: List<Photo>) {
+        val photoEntities: MutableList<PhotoEntity> = mutableListOf()
+        photos.forEach {
+            photoEntities.add(it.toEntity())
+        }
+        appDatabase.photoDao.upsertPhoto(photoEntities)
     }
 
     override fun readPhotos(): Flow<List<Photo>> {
@@ -42,9 +47,5 @@ class PhotosServiceImpl @Inject constructor(
             }
             emit(photos)
         }
-    }
-
-    override fun cleanDatabase() {
-        appDatabase.photoDao.deleteAll()
     }
 }
