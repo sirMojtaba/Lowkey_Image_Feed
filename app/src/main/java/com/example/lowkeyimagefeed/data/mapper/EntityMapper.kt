@@ -10,7 +10,7 @@ fun Photo.toEntity(): PhotoEntity {
         id = id,
         photographer = photographer,
         alt = alt,
-        src = src.toEntity()
+        src = src
     )
 }
 
@@ -19,7 +19,7 @@ fun PhotoEntity.toPhoto(): Photo {
         id = id,
         photographer = photographer,
         alt = alt,
-        src = src.toSrc()
+        src = src
     )
 }
 

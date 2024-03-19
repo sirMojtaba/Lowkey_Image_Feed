@@ -18,16 +18,15 @@ class PhotosServiceImpl @Inject constructor(
 
     override fun fetchPhotos(page: Int): Flow<List<Photo>?> {
         return flow {
-            val photos: MutableList<Photo>?
-            try {
-                photos = apiService.getPhotos(
+            val photos: MutableList<Photo>? = try {
+                apiService.getPhotos(
                     NetworkConsts.API_KEY,
                     mapOf("page" to page, "per_page" to 10)
                 ).photos.toMutableList()
-                emit(photos)
             } catch (e: Exception) {
-                emit(null)
+                null
             }
+            emit(photos)
         }
     }
 
